@@ -9,10 +9,17 @@ and that's the special thing about it and it only works on that state property, 
 
   state = {
     persons: [{ name: "Anmol" }, { name: "Aarav" }],
+    otherState: "Some value", // this value will not be updated
   };
 
   switchNameHandler = () => {
-    console.log("Was clicked");
+    //console.log("Was clicked");
+    //Dont do this : this.state.persons[0].name = "Anmol";
+
+    this.setState({
+      //this is used to change the state
+      persons: [{ name: "Anmol Zakie" }, { name: "Aarav" }],
+    });
   };
   render() {
     return (

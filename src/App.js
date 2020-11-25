@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import "./App.css";
-import Person from "./Person/person";
+import Person from "./Person/Person";
 
 class App extends Component {
   /*state would be a special property,thus far we don't use it in a special way though, we can change this. State can be changed and if it changes
@@ -25,16 +25,44 @@ and that's the special thing about it and it only works on that state property, 
       ],
     });
   };
+
+  nameChangedHandler = (event) => {
+    this.setState({
+      persons: [
+        { name: "Anmol" },
+        { name: event.target.value }, //target here is the input element
+        { name: "Andrew" },
+      ],
+    });
+  };
+
   render() {
+    //Inline style
+    const style = {
+      backgroundColor: "white",
+      font: "inherit",
+      border: "1px solid blue",
+      padding: "8px",
+      cursor: "pointer",
+    };
+
     return (
       <div className="App">
         <h1>Hi i am react app</h1>
         <p>This is really working</p>
-        <button onClick={() => this.switchNameHandler("Anmol Zakie")}>
+        <button
+          style={style}
+          onClick={() => this.switchNameHandler("Anmol Zakie")}
+        >
           Switch name
         </button>
         <Person name={this.state.persons[0].name} />
-        <Person name={this.state.persons[1].name}>My hobby is painting</Person>
+        <Person
+          name={this.state.persons[1].name}
+          onChange={this.nameChangedHandler}
+        >
+          My hobby is painting
+        </Person>
         <Person
           name={this.state.persons[2].name}
           click={this.switchNameHandler.bind(this, "Anmol King")}

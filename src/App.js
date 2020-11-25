@@ -8,17 +8,21 @@ and that's the special thing about it and it only works on that state property, 
 */
 
   state = {
-    persons: [{ name: "Anmol" }, { name: "Aarav" }],
+    persons: [{ name: "Anmol" }, { name: "Aarav" }, { name: "Andrew" }],
     otherState: "Some value", // this value will not be updated
   };
 
-  switchNameHandler = () => {
+  switchNameHandler = (newName) => {
     //console.log("Was clicked");
     //Dont do this : this.state.persons[0].name = "Anmol";
 
     this.setState({
       //this is used to change the state
-      persons: [{ name: "Anmol Zakie" }, { name: "Aarav" }],
+      persons: [
+        { name: newName },
+        { name: "Aarav Anand" },
+        { name: "Andrew james" },
+      ],
     });
   };
   render() {
@@ -26,9 +30,15 @@ and that's the special thing about it and it only works on that state property, 
       <div className="App">
         <h1>Hi i am react app</h1>
         <p>This is really working</p>
-        <button onClick={this.switchNameHandler}>Switch name</button>
+        <button onClick={() => this.switchNameHandler("Anmol Zakie")}>
+          Switch name
+        </button>
         <Person name={this.state.persons[0].name} />
         <Person name={this.state.persons[1].name}>My hobby is painting</Person>
+        <Person
+          name={this.state.persons[2].name}
+          click={this.switchNameHandler.bind(this, "Anmol King")}
+        />
       </div>
     );
 

@@ -1,5 +1,6 @@
 import React, { Component, useState } from "react";
 import "./App.css";
+import person from "./Person/Person";
 import Person from "./Person/Person";
 
 // class App extends Component {
@@ -81,7 +82,7 @@ import Person from "./Person/Person";
 
 // export default App;
 
-//Using React Hooks to update states in functional component
+/************************ Using React Hooks to update states in functional component *********************************/
 
 // const app = (props) => {
 //useState is use for changing the state in functional component
@@ -124,16 +125,6 @@ class App extends Component {
     showPersons: false,
   };
 
-  switchNameHandler = (newName) => {
-    this.setState({
-      persons: [
-        { name: newName },
-        { name: "Aarav Anand" },
-        { name: "Andrew james" },
-      ],
-    });
-  };
-
   nameChangedHandler = (event) => {
     this.setState({
       persons: [
@@ -149,6 +140,12 @@ class App extends Component {
     this.setState({ showPersons: !doesShow });
   };
 
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1); //create new version of the aaray
+    this.setState({ persons: persons });
+  };
+
   render() {
     const style = {
       backgroundColor: "white",
@@ -158,6 +155,26 @@ class App extends Component {
       cursor: "pointer",
     };
 
+    //Instead of rendering content conditionally by ternary operator we can use js
+    let persons = null;
+
+    //Rendering the list dynamically
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          {this.state.persons.map((person, index) => {
+            //This maps the persons array and returns each and every value and then renders it
+            return (
+              <Person
+                name={person.name}
+                click={() => this.deletePersonHandler(index)}
+              />
+            );
+          })}
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <h1>Hi i am react app</h1>
@@ -165,7 +182,10 @@ class App extends Component {
         <button style={style} onClick={this.tooglePersonHandler}>
           Toogle name
         </button>
-        {this.state.showPersons === true ? (
+        {persons}
+
+        {/* Instead of this use Javascript way of rendering content conditionally
+          {this.state.showPersons === true ? (
           <div>
             <Person name={this.state.persons[0].name} />
             <Person
@@ -179,7 +199,7 @@ class App extends Component {
               click={this.switchNameHandler.bind(this, "Anmol King")}
             />
           </div>
-        ) : null}
+        ) : null} */}
       </div>
     );
   }

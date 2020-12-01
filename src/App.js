@@ -1,6 +1,5 @@
-import React, { Component, useState } from "react";
+import React, { Component /*useState*/ } from "react";
 import "./App.css";
-import person from "./Person/Person";
 import Person from "./Person/Person";
 
 // class App extends Component {
@@ -141,7 +140,9 @@ class App extends Component {
   };
 
   deletePersonHandler = (personIndex) => {
-    const persons = this.state.persons;
+    //Always create a copy of the original array and then mutate the copied array by using slice() or spread operator
+    //const persons = this.state.persons.slice();
+    const persons = [...this.state.persons];
     persons.splice(personIndex, 1); //create new version of the aaray
     this.setState({ persons: persons });
   };

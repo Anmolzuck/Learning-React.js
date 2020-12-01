@@ -119,18 +119,33 @@ import Person from "./Person/Person";
 
 class App extends Component {
   state = {
-    persons: [{ name: "Anmol" }, { name: "Aarav" }, { name: "Andrew" }],
+    persons: [
+      { id: "adcd", name: "Anmol" },
+      { id: "dsdvs", name: "Aarav" },
+      { id: "dddjx", name: "Andrew" },
+    ],
     otherState: "Some value",
     showPersons: false,
   };
 
-  nameChangedHandler = (event) => {
+  nameChangedHandler = (event, id) => {
+    //Find that person from the persons array
+    const personIndex = this.state.persons.findIndex((el) => {
+      return el.id === id;
+    });
+    console.log(personIndex);
+
+    const person = { ...this.state.persons[personIndex] };
+
+    //Or we can aslo use - const person = Object.assign({},this.state.persons[personIndex])
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
     this.setState({
-      persons: [
-        { name: "Anmol" },
-        { name: event.target.value },
-        { name: "Andrew" },
-      ],
+      persons: persons,
     });
   };
 
@@ -167,8 +182,10 @@ class App extends Component {
             //This maps the persons array and returns each and every value and then renders it
             return (
               <Person
-                name={person.name}
                 click={() => this.deletePersonHandler(index)}
+                name={person.name}
+                key={person.id}
+                onChange={(event) => this.nameChangedHandler(event, person.id)}
               />
             );
           })}

@@ -164,7 +164,8 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: "white",
+      backgroundColor: "green",
+      color: "white",
       font: "inherit",
       border: "1px solid blue",
       padding: "8px",
@@ -191,12 +192,23 @@ class App extends Component {
           })}
         </div>
       );
+
+      //Applying dynamic styling
+      style.backgroundColor = "red";
     }
+
+    //Changing class dynamically
+    // let classes = ["red", "bold"].join(" ");  This will give "red bold" which is used in css
+
+    const classes = [];
+    if (this.state.persons.length <= 2) classes.push("red");
+
+    if (this.state.persons.length <= 1) classes.push("bold");
 
     return (
       <div className="App">
         <h1>Hi i am react app</h1>
-        <p>This is really working</p>
+        <p className={classes.join(" ")}>This is really working</p>
         <button style={style} onClick={this.tooglePersonHandler}>
           Toogle name
         </button>

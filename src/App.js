@@ -1,6 +1,6 @@
 import React, { Component /*useState*/ } from 'react';
 import './App.css';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
 
 // class App extends Component {
@@ -215,15 +215,16 @@ class App extends Component {
     if (this.state.persons.length <= 1) classes.push('bold');
 
     return (
-      <div className="App">
-        <h1>Hi i am react app</h1>
-        <p className={classes.join(' ')}>This is really working</p>
-        <button style={style} onClick={this.tooglePersonHandler}>
-          Toogle name
-        </button>
-        {persons}
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi i am react app</h1>
+          <p className={classes.join(' ')}>This is really working</p>
+          <button style={style} onClick={this.tooglePersonHandler}>
+            Toogle name
+          </button>
+          {persons}
 
-        {/* Instead of this use Javascript way of rendering content conditionally
+          {/* Instead of this use Javascript way of rendering content conditionally
           {this.state.showPersons === true ? (
           <div>
             <Person name={this.state.persons[0].name} />
@@ -239,7 +240,8 @@ class App extends Component {
             />
           </div>
         ) : null} */}
-      </div>
+        </div>
+      </StyleRoot>
     );
   }
 }

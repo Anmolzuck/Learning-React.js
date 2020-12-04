@@ -1,5 +1,6 @@
-import React from "react";
-import "./Person.css";
+import React from 'react';
+import Radium from 'radium';
+import './Person.css';
 
 //Creating a component
 const person = (props) => {
@@ -14,4 +15,4 @@ const person = (props) => {
   );
 };
 
-export default person;
+export default Radium(person);

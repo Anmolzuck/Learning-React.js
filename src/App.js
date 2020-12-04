@@ -1,6 +1,7 @@
-import React, { Component /*useState*/ } from "react";
-import "./App.css";
-import Person from "./Person/Person";
+import React, { Component /*useState*/ } from 'react';
+import './App.css';
+import Radium from 'radium';
+import Person from './Person/Person';
 
 // class App extends Component {
 //   /*state would be a special property,thus far we don't use it in a special way though, we can change this. State can be changed and if it changes
@@ -120,11 +121,11 @@ import Person from "./Person/Person";
 class App extends Component {
   state = {
     persons: [
-      { id: "adcd", name: "Anmol" },
-      { id: "dsdvs", name: "Aarav" },
-      { id: "dddjx", name: "Andrew" },
+      { id: 'adcd', name: 'Anmol' },
+      { id: 'dsdvs', name: 'Aarav' },
+      { id: 'dddjx', name: 'Andrew' },
     ],
-    otherState: "Some value",
+    otherState: 'Some value',
     showPersons: false,
   };
 
@@ -164,12 +165,16 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: "green",
-      color: "white",
-      font: "inherit",
-      border: "1px solid blue",
-      padding: "8px",
-      cursor: "pointer",
+      backgroundColor: 'green',
+      color: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black',
+      },
     };
 
     //Instead of rendering content conditionally by ternary operator we can use js
@@ -194,21 +199,25 @@ class App extends Component {
       );
 
       //Applying dynamic styling
-      style.backgroundColor = "red";
+      style.backgroundColor = 'red';
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black',
+      };
     }
 
     //Changing class dynamically
     // let classes = ["red", "bold"].join(" ");  This will give "red bold" which is used in css
 
     const classes = [];
-    if (this.state.persons.length <= 2) classes.push("red");
+    if (this.state.persons.length <= 2) classes.push('red');
 
-    if (this.state.persons.length <= 1) classes.push("bold");
+    if (this.state.persons.length <= 1) classes.push('bold');
 
     return (
       <div className="App">
         <h1>Hi i am react app</h1>
-        <p className={classes.join(" ")}>This is really working</p>
+        <p className={classes.join(' ')}>This is really working</p>
         <button style={style} onClick={this.tooglePersonHandler}>
           Toogle name
         </button>
@@ -235,4 +244,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);

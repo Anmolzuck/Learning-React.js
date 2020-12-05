@@ -1,5 +1,5 @@
 import React, { Component /*useState*/ } from 'react';
-import './App.css';
+import classes from './App.css';
 //import styled from 'styled-components';
 import Person from './Person/Person';
 
@@ -59,6 +59,9 @@ class App extends Component {
 
   render() {
     let persons = null;
+    // let btnClasses = [classes.button];
+    let btnClasses = '';
+    console.log(btnClasses);
 
     if (this.state.showPersons) {
       persons = (
@@ -75,16 +78,18 @@ class App extends Component {
           })}
         </div>
       );
+      // btnClasses.push(classes.Red);
+      btnClasses = classes.Red;
     }
 
-    const classes = [];
-    if (this.state.persons.length <= 2) classes.push('red');
-    if (this.state.persons.length <= 1) classes.push('bold');
+    const assignedClasses = [];
+    if (this.state.persons.length <= 2) assignedClasses.push(classes.red);
+    if (this.state.persons.length <= 1) assignedClasses.push(classes.bold);
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi i am react app</h1>
-        <p className={classes.join(' ')}>This is really working</p>
+        <p className={assignedClasses.join(' ')}>This is really working</p>
 
         {/* <StyledButton
           alt={this.state.showPersons}
@@ -93,7 +98,14 @@ class App extends Component {
           Toogle name
         </StyledButton> */}
 
-        <button className="button" onClick={this.tooglePersonHandler}>
+        {/*<button
+          className={btnClasses.join(' ')}
+          onClick={this.tooglePersonHandler}
+        >
+          Toogle Name
+        </button> */}
+
+        <button className={btnClasses} onClick={this.tooglePersonHandler}>
           Toogle Name
         </button>
         {persons}

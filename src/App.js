@@ -2,6 +2,7 @@ import React, { Component /*useState*/ } from 'react';
 import classes from './App.css';
 //import styled from 'styled-components';
 import Person from './Person/Person';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 //We can pass dynamic content in the styled component normally using ${}
 // const StyledButton = styled.button`
@@ -68,12 +69,15 @@ class App extends Component {
         <div>
           {this.state.persons.map((person, index) => {
             return (
-              <Person
-                click={() => this.deletePersonHandler(index)}
-                name={person.name}
-                key={person.id}
-                onChange={(event) => this.nameChangedHandler(event, person.id)}
-              />
+              <ErrorBoundary key={person.id}>
+                <Person
+                  click={() => this.deletePersonHandler(index)}
+                  name={person.name}
+                  onChange={(event) =>
+                    this.nameChangedHandler(event, person.id)
+                  }
+                />
+              </ErrorBoundary>
             );
           })}
         </div>

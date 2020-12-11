@@ -12,7 +12,7 @@ function Cockpit(props) {
 
   return (
     <div className={classes.Cockpit}>
-      <h1>Hi i am react app</h1>
+      <h1>{props.title}</h1>
       <p className={assignedClasses.join(' ')}>This is really working</p>
 
       <button className={btnClasses} onClick={props.clicked}>

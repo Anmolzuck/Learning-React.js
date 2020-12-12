@@ -18,6 +18,7 @@ import classes from './Person.css';
 // `;
 
 const person = (props) => {
+  console.log('4-(1,2,3) [Person.js] rendering..');
   return (
     // <div className="Person" style={styles}>
     <div className={classes.Person}>

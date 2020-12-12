@@ -1,14 +1,14 @@
-import React from 'react';
+//import React from 'react';
 //import styled from 'styled-components';
 // import Radium from 'radium';
-import classes from './Person.css';
+//import classes from './Person.css';
 
 //StyledDiv is a react component
 // const StyledDiv = styled.div`
 //   width: 60%;
 //   margin: 16px auto;
-//   border: 1px solid #eee;
-//   box-shadow: 0 2px 3px #ccc;
+//   border: 1px solid ;
+//   box-shadow: 0 2px 3px;
 //   padding: 16px;
 //   text-align: center;
 
@@ -17,21 +17,21 @@ import classes from './Person.css';
 //   }
 // `;
 
-const person = (props) => {
-  console.log('4-(1,2,3) [Person.js] rendering..');
-  return (
-    // <div className="Person" style={styles}>
-    <div className={classes.Person}>
-      <p onClick={props.click}>
-        I am {props.name} and i am {Math.floor(Math.random() * 30)} years old!
-      </p>
-      <p>{props.children}</p>
-      <input type="text" onChange={props.onChange} value={props.name} />
-    </div>
-  );
-};
+// const person = (props) => {
+//   console.log('4-(1,2,3) [Person.js] rendering..');
+//   return (
+//     // <div className="Person" style={styles}>
+//     <div className={classes.Person}>
+//       <p onClick={props.click}>
+//         I am {props.name} and i am {Math.floor(Math.random() * 30)} years old!
+//       </p>
+//       <p>{props.children}</p>
+//       <input type="text" onChange={props.onChange} value={props.name} />
+//     </div>
+//   );
+// };
 
-export default person;
+// export default person;
 
 /*
 More on CSS Modules
@@ -65,3 +65,27 @@ Example:
 
 Now you can use className="Post"  anywhere in your app and receive that styling.
 */
+
+import React, { Component } from 'react';
+import classes from './Person.css';
+export class Person extends Component {
+  render() {
+    console.log('4-(1,2,3) [Person.js] rendering..');
+    return (
+      <div className={classes.Person}>
+        <p onClick={this.props.click}>
+          I am {this.props.name} and i am {Math.floor(Math.random() * 30)} years
+          old!
+        </p>
+        <p>{this.props.children}</p>
+        <input
+          type="text"
+          onChange={this.props.onChange}
+          value={this.props.name}
+        />
+      </div>
+    );
+  }
+}
+
+export default Person;

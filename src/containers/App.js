@@ -36,7 +36,7 @@ class App extends Component {
     const personIndex = this.state.persons.findIndex((el) => {
       return el.id === id;
     });
-    console.log(personIndex);
+    //console.log(personIndex);
 
     const person = { ...this.state.persons[personIndex] };
     person.name = event.target.value;

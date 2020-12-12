@@ -1,19 +1,61 @@
-import React from 'react';
+// import React from 'react';
+// import Person from './Person/Person';
+
+// //We get the persons array from App.js
+// const persons = (props) => {
+//   console.log('4-[Persons.js] rendering..');
+//   return props.persons.map((person, index) => {
+//     return (
+//       <Person
+//         click={() => props.clicked(index)}
+//         name={person.name}
+//         key={person.id}
+//         onChange={(event) => props.changed(event, person.id)}
+//       />
+//     );
+//   });
+// };
+
+// export default persons;
+
+import React, { Component } from 'react';
 import Person from './Person/Person';
 
-//We get the persons array from App.js
-const persons = (props) => {
-  console.log('4-[Persons.js] rendering..');
-  return props.persons.map((person, index) => {
-    return (
-      <Person
-        click={() => props.clicked(index)}
-        name={person.name}
-        key={person.id}
-        onChange={(event) => props.changed(event, person.id)}
-      />
-    );
-  });
-};
+export class Persons extends Component {
+  static getDerivedStateFromProps(props, state) {
+    console.log('[Person.js] getDerivedStateFromProps');
+    return state;
+  }
 
-export default persons;
+  shouldComponentUpdate(nextProps, nextState) {
+    //We have to pass condition which return true or false
+    console.log('[Person.js] shouldComponentUpdate');
+    return true;
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('[Person.js] getSnapShotBeforeUpdate');
+    return { message: 'Snapshot' };
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('[Person.js] componentDidUpdate');
+    console.log(snapshot);
+  }
+
+  render() {
+    console.log('4-[Persons.js] rendering..');
+    return this.props.persons.map((person, index) => {
+      return (
+        <Person
+          click={() => this.props.clicked(index)}
+          name={person.name}
+          key={person.id}
+          onChange={(event) => this.props.changed(event, person.id)}
+        />
+      );
+    });
+  }
+}
+
+export default Persons;

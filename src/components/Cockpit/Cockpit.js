@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Cockpit.css';
 
 function Cockpit(props) {
+  //This will only execute when the data is changed
+  useEffect(() => {
+    console.log('Cockpit.js 1st useEffect');
+    setTimeout(() => {
+      alert('Data is fetched');
+    }, 1000);
+
+    return () => console.log('Cockpit.js cleanup work  in 1st useEffect');
+    //Make https request here
+  }, [props.persons]); //if we pass empty array then useEffect will only run at the beginning or creation time
+
+  //This will be executed for every render lifecycle
+  useEffect(() => {
+    console.log('Cockpit.js 2nd useEffect');
+    return () => console.log('Cockpit.js 2nd cleanup work in useEffect');
+  });
+
   let btnClasses = '';
 
   if (props.showPersons) btnClasses = classes.Red;

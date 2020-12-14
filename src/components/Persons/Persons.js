@@ -22,10 +22,10 @@ import React, { Component } from 'react';
 import Person from './Person/Person';
 
 export class Persons extends Component {
-  static getDerivedStateFromProps(props, state) {
-    console.log('[Person.js] getDerivedStateFromProps');
-    return state;
-  }
+  // static getDerivedStateFromProps(props, state) {
+  //   console.log('[Person.js] getDerivedStateFromProps');
+  //   return state;
+  // }
 
   shouldComponentUpdate(nextProps, nextState) {
     //We have to pass condition which return true or false
@@ -39,8 +39,13 @@ export class Persons extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log('[Person.js] componentDidUpdate');
+    console.log('[Persons.js] componentDidUpdate');
     console.log(snapshot);
+  }
+
+  //We write all the code whuch we want to execute before the component is removed
+  componentWillUnmount() {
+    console.log('[Persons.js] componentWillUnmount');
   }
 
   render() {

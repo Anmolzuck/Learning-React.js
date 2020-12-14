@@ -9,9 +9,12 @@ function Cockpit(props) {
       alert('Data is fetched');
     }, 1000);
 
-    return () => console.log('Cockpit.js cleanup work  in 1st useEffect');
+    return () => {
+      // clearTimeout(timer);
+      console.log('Cockpit.js cleanup work  in 1st useEffect');
+    };
     //Make https request here
-  }, [props.persons]); //if we pass empty array then useEffect will only run at the beginning or creation time
+  }, []); //if we pass empty array then useEffect will only run at the beginning or creation time
 
   //This will be executed for every render lifecycle
   useEffect(() => {

@@ -88,29 +88,29 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
-        {/* // <button
-        //   onClick={() => {
-        //     const cock = this.state.showCockpit;
-        //     this.setState({ showCockpit: !cock });
-        //   }}
-        // >
-        //   ShowCockpit
-        // </button>
-        // {this.state.showCockpit ? (
-        //   <Cockpit
-        //     title={this.props.appTitle}
-        //     persons={this.state.persons}
-        //     showPersons={this.state.showPersons}
-        //     clicked={this.tooglePersonHandler}
-        //   />
-       // ) : null}*/}
-
+        <button
+          onClick={() => {
+            const cock = this.state.showCockpit;
+            this.setState({ showCockpit: !cock });
+          }}
+        >
+          ShowCockpit
+        </button>
+        {this.state.showCockpit ? (
+          <Cockpit
+            title={this.props.appTitle}
+            persons={this.state.persons}
+            showPersons={this.state.showPersons}
+            clicked={this.tooglePersonHandler}
+          />
+        ) : null}
+        {/*
         <Cockpit
           title={this.props.appTitle}
           persons={this.state.persons}
           showPersons={this.state.showPersons}
           clicked={this.tooglePersonHandler}
-        />
+        /> */}
         {persons}
       </div>
     );

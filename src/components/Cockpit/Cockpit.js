@@ -5,12 +5,12 @@ function Cockpit(props) {
   //This will only execute when the data is changed
   useEffect(() => {
     console.log('Cockpit.js 1st useEffect');
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       alert('Data is fetched');
     }, 1000);
 
     return () => {
-      // clearTimeout(timer);
+      clearTimeout(timer);
       console.log('Cockpit.js cleanup work  in 1st useEffect');
     };
     //Make https request here
